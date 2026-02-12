@@ -1,0 +1,243 @@
+:root {
+    --bg-color: #0c0c0c;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-blue: #00ffff;
+    --accent-green: #32cd32;
+    --accent-whatsapp: #25D366;
+    --font-main: 'Outfit', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    height: 100vh;
+    /* Fixed height to prevent scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Hide overflow */
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(50, 205, 50, 0.03) 0%, transparent 20%);
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    /* Reduced max-width for compact view */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    /* Reduced margin */
+    animation: fadeInDown 0.8s ease-out;
+    flex-shrink: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    /* Reduced font size */
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+.tagline {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    /* Reduced font size */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.card-grid {
+    display: flex;
+    /* Changed from grid to flex column for stack */
+    flex-direction: column;
+    gap: 1rem;
+    /* Tight gap */
+    width: 100%;
+    margin-bottom: 1.5rem;
+    overflow-y: auto;
+    /* Allow scrolling within grid if absolutely necessary on tiny screens */
+    max-height: 70vh;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    /* Reduced radius */
+    padding: 1rem 1.5rem;
+    /* Reduced padding */
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: row;
+    /* Horizontal layout for cards */
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.card:hover::before {
+    transform: translateX(100%);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    /* Subtle lift */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-text {
+    flex: 1;
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    /* Reduced font size */
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    display: none;
+    /* Hide description on very small screens or for compactness */
+}
+
+@media (min-width: 400px) {
+    .card p {
+        display: block;
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    /* Smaller button */
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    border: 1px solid transparent;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+/* Specific Card Styling */
+.card.primary:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+}
+
+.card.primary .btn {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+.card.primary:hover .btn {
+    background: var(--accent-blue);
+    color: #000;
+}
+
+.card.secondary:hover {
+    box-shadow: 0 0 15px rgba(50, 205, 50, 0.15);
+}
+
+.card.secondary .btn {
+    background: rgba(50, 205, 50, 0.1);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+.card.secondary:hover .btn {
+    background: var(--accent-green);
+    color: #000;
+}
+
+.card.whatsapp:hover {
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.15);
+}
+
+.card.whatsapp .btn {
+    background: rgba(37, 211, 102, 0.1);
+    color: var(--accent-whatsapp);
+    border-color: var(--accent-whatsapp);
+}
+
+.card.whatsapp:hover .btn {
+    background: var(--accent-whatsapp);
+    color: #fff;
+}
+
+footer {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.7rem;
+    margin-top: auto;
+    text-align: center;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
